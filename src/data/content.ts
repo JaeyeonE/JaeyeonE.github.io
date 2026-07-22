@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Jaeyeon Heo',
   title: 'AI/ML Engineer — Computer Vision × Robot Control',
-  tagline: 'I refine what has been learned, and build what is needed.',
+  tagline: "I build on what I've learned and create what is needed.",
   email: 'jaeyeon.e.hoe@gmail.com',
   github: 'https://github.com/JaeyeonE',
   linkedin: 'https://www.linkedin.com/in/jaeyeonelenaheo/',
@@ -39,12 +39,12 @@ export const interests = [
 export const education = [
   {
     org: 'Keimyung University',
-    detail: 'B.S. Computer Engineering & B.A. Public Administration (dual degree)',
+    detail: 'B.S. in Computer Engineering & B.A. in Public Administration (dual degree)',
     period: 'Mar 2020 – Feb 2026',
   },
   {
     org: 'KG KAIROS Robotics Bootcamp',
-    detail: 'Industrial robot control & simulation with ROS2 / MoveIt2, PLC-based automation',
+    detail: 'Industrial robot control and simulation with ROS2 / MoveIt2, plus PLC-based automation',
     period: 'Dec 2025 – Jun 2026',
   },
   {
@@ -68,7 +68,7 @@ export const experience = [
     period: 'Aug 2025 – Sep 2025',
     points: [
       'Reviewed the Vision Transformer (ViT) paper for the lab reading group.',
-      'Built and experimented with a YOLOv8-based smoke / fire detection model (CUDA, Python).',
+      'Built and tested a YOLOv8-based smoke and fire detection model (CUDA, Python).',
     ],
   },
 ]
@@ -103,12 +103,12 @@ export const projects: Project[] = [
     role: 'Personal project',
     stack: ['CLIP', 'Python', 'Zero-shot grounding', 'Prompt / heuristic reasoning'],
     problem:
-      'How far can a robot understand a relational instruction like "place {object} onto {target}" with zero-shot, CLIP-based grounding — no additional training?',
+      'How well can a robot understand a relational instruction like "place {object} onto {target}" using zero-shot, CLIP-based grounding with no additional training?',
     approach: [
-      'Found an early cognitive imbalance: Object Selection reached 46.7% while Target Grounding stalled at 20.0% (Exp #6–#8) — the model could find the object but not the placement location.',
+      'Identified an early performance imbalance: Object Selection reached 46.7% while Target Grounding stalled at 20.0% (Exp #6–#8) — the model could find the object but not the placement location.',
       'Traced the bottleneck to a missing spatial-reasoning signal, and injected an Affordance Prior — prior knowledge of placeable regions — into the pipeline.',
-      'Extended the pipeline to combine Region information with the Affordance signal, instead of depending on a single cue.',
-      'Once Target Grounding gains flattened out, redirected the roadmap toward breaking the Object Selection accuracy ceiling instead of over-optimizing an already-saturated signal.',
+      'Extended the pipeline to combine region information with the Affordance signal rather than relying on a single cue.',
+      'Once Target Grounding gains plateaued, shifted the focus to overcoming the Object Selection accuracy ceiling rather than over-optimizing an already-saturated signal.',
     ],
     results: [
       'Target Grounding jumped 3.3× and Success Rate improved roughly 3× after adding the Affordance Prior.',
@@ -129,18 +129,18 @@ export const projects: Project[] = [
     role: 'Team project · Project lead',
     stack: ['Doosan E0509', 'Intel RealSense D455', 'YOLOv12', 'ROS2', 'SQLite', 'Streamlit', 'OpenCV'],
     problem:
-      'Fuel-port, cap, and nozzle geometry differs by vehicle, lighting and reflections make detection unstable, camera-to-robot-base coordinate transforms are error-prone, and there was no visibility into task state or failures.',
+      'Fuel-port, cap, and nozzle geometry varies by vehicle; lighting and reflections make detection unstable; camera-to-robot-base coordinate transforms are error-prone; and the system provided no visibility into task status or failures.',
     approach: [
       'Designed a 4-layer system architecture — Perception → Control → Data → Service — built end-to-end on a Doosan E0509 arm with an Intel RealSense D455, YOLOv12, ROS2, SQLite, and Streamlit.',
-      'Built RGB-D perception for 3-class detection (fuel port / cap / nozzle) with the camera-to-robot-base coordinate transform feeding the grasp controller.',
-      'Collected and annotated a refueling-specific dataset, used augmentation to work around limited data, and tuned hyperparameters for detection accuracy and inference speed.',
-      'Applied OpenCV-based center correction on top of model output to improve grasp precision.',
+      'Built an RGB-D perception pipeline for 3-class detection (fuel port / cap / nozzle), with a camera-to-robot-base coordinate transform feeding the grasp controller.',
+      'Collected and annotated a refueling-specific dataset, used augmentation to mitigate limited data, and tuned hyperparameters for detection accuracy and inference speed.',
+      'Applied OpenCV-based center correction to the model output to improve grasp precision.',
       'Designed a SQLite task-log schema (task ID, timestamp, vision coordinates, error code, status) with full-pipeline logging for monitoring.',
       'Led scheduling, task allocation, and interface coordination across the vision, control, and data modules.',
     ],
     results: [
-      'Closed the loop end-to-end — detection → coordinate transform → grasp — in a mock environment.',
-      'Next: real-environment deployment, a VLA-based natural-language interface, and closed-loop calibration to reduce coordinate-transform error.',
+      'Completed the full loop — detection → coordinate transform → grasp — in a mock environment.',
+      'Next: deployment in a real-world environment, a VLA-based natural-language interface, and closed-loop calibration to reduce coordinate-transform error.',
     ],
     links: [{ label: 'GitHub', href: 'https://github.com/JaeyeonE/robotic-arm-refueler' }],
     video: {
@@ -162,14 +162,14 @@ export const projects: Project[] = [
     draft: true,
     stack: ['ROS2', 'MoveIt2', 'Doosan robot arm', 'PLC (LS PLC / XG5000 / MELSEC)', 'Python', 'Web interface'],
     problem:
-      'Extending single-task arm control into a broader in-facility delivery and handling scenario — coordinating a Doosan robot arm, PLC-driven automation, and a mobile simulation layer behind a web interface.',
+      'Extending single-task arm control to a broader in-facility delivery and handling scenario by coordinating a Doosan robot arm, PLC-driven automation, and a mobile simulation layer through a web interface.',
     approach: [
       'Built calibration and gripper-control modules for precision handling.',
       'Implemented a PLC controller layer for physical automation alongside the robot-arm control stack.',
       'Built a web interface and a mobile simulation environment to test delivery / service scenarios ahead of physical deployment.',
     ],
     results: [
-      'Latest project, still in active development — this card will be updated as results come in.',
+      'This latest project is still in active development — this card will be updated as results come in.',
     ],
     links: [{ label: 'GitHub', href: 'https://github.com/Filaner/RoToSY' }],
     video: {
@@ -191,13 +191,13 @@ export const otherProjects = [
     title: 'DOTS',
     period: '2024',
     role: 'Personal project',
-    desc: 'Hyperparameter experiments for a CNN-based English braille recognition model.',
+    desc: 'Hyperparameter experiments for a CNN-based English Braille recognition model.',
   },
   {
     title: 'LLM Study',
     period: 'TRUST AI industry-academic program',
     role: 'Study group',
-    desc: 'Experiments on MNLI, RAG, and prompt engineering.',
+    desc: 'Experiments with MNLI, RAG, and prompt engineering.',
   },
   {
     title: 'GET OUT OF',
@@ -218,13 +218,13 @@ export const awards = [
     title: 'Bellevue College & COSSIM Project Group Microdegree Exhibition',
     rank: '1st place',
     year: '2025',
-    desc: 'Walking-assist app prototype built on data collection and YOLOv5 detection (Flask, Python).',
+    desc: 'Walking-assistance app prototype developed using collected data and YOLOv5 detection (Flask, Python).',
   },
   {
     title: 'Bellevue College NextGen Startup Challenge (Hackathon)',
     rank: '2nd place',
     year: '2025',
-    desc: 'Team Clover — VR escape room, "Space Needle" edition. Planning & TPM role (React, Git, Unity, Firebase).',
+    desc: 'Team Clover — VR escape room, "Space Needle" edition. Project planning and TPM role (React, Git, Unity, Firebase).',
   },
   {
     title: 'Daegu Digital Innovation Promotion Agency — Regional SW Talent Program',
@@ -235,19 +235,19 @@ export const awards = [
     title: 'Bellevue College Coding Competition',
     rank: '3rd place',
     year: '2025',
-    desc: 'Python algorithm problem solving.',
+    desc: 'Algorithmic problem-solving in Python.',
   },
   {
     title: 'CO-Data Station Data Analysis Competition',
     rank: '4th place',
     year: '2024',
-    desc: 'Proposed a regional industry-cluster analysis program from local industry data.',
+    desc: 'Proposed a regional industry-cluster analysis program using local industry data.',
   },
   {
     title: 'Korea Information Technology Society — Undergraduate Paper Competition',
     rank: '3rd place',
     year: '2024',
-    desc: 'Location-based social app with AI character filtering — frontend (Flutter, Jupyter Notebook).',
+    desc: 'Location-based social app with AI character filtering — frontend development (Flutter, Jupyter Notebook).',
   },
 ]
 

@@ -37,14 +37,14 @@ export function Hero() {
         >
           <p className="section-label mb-6">{profile.title}</p>
           <h1 className="text-balance font-display text-5xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[4.1rem]">
-            <span className="font-thin">I refine what has been</span>{' '}
+            <span className="font-thin">I build on what I've</span>{' '}
             <span className="font-black">learned</span>
-            <span className="font-thin">, and build what is</span>{' '}
+            <span className="font-thin"> and create what is</span>{' '}
             <span className="font-black">needed</span>
             <span className="font-thin">.</span>
           </h1>
           <p className="mt-8 max-w-md font-light leading-relaxed text-graphite">
-            {profile.name} — building manipulation that sees on purpose.
+            {profile.name} — building robot manipulation systems that see with purpose.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2">

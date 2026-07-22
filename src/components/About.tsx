@@ -13,7 +13,7 @@ export function About() {
             <span className="font-thin">.</span>
           </h2>
           <p className="mt-6 font-light leading-relaxed text-graphite">
-            A computer engineering student moving from detection-first computer vision into robot
+            A computer engineering student transitioning from detection-first computer vision to robot
             manipulation. Currently a researcher at AGA Lab, UNIST, working on VLA, reinforcement
             learning, and computer vision.
           </p>

@@ -9,8 +9,8 @@ export function Projects() {
         <span className="font-thin">Selected</span> <span className="font-black">work</span>
       </h2>
       <p className="max-w-xl font-light text-graphite">
-        From a personal question about zero-shot vision-language grounding to a full
-        perception-to-grasp robot pipeline built with a team.
+        From exploring zero-shot vision-language grounding independently to building a complete
+        perception-to-grasp robot pipeline with a team.
       </p>
 
       <div className="mt-8">
