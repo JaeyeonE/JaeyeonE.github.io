@@ -1,0 +1,103 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, 'Inter', sans-serif;
+  --font-display: 'Helvetica Neue', Helvetica, Arial, 'Inter Tight', sans-serif;
+
+  --color-paper: #ffffff;
+  --color-mist: #fafafa;
+  --color-fog: #f1f1f3;
+  --color-cloud: #e3e3e7;
+  --color-ash: #c7c7cf;
+  --color-slate: #97979f;
+  --color-graphite: #5c5c64;
+  --color-ink: #1c1c1f;
+  --color-void: #08080a;
+  --color-accent: #2509d5;
+  --color-accent-soft: #eeebfc;
+
+  --animate-drift: drift 12s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Base/reset rules go in Tailwind's `base` layer so utility classes (e.g.
+   `text-cloud` on a link) always win in the cascade, regardless of source
+   order or selector specificity — unlayered CSS beats layered CSS outright. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-cloud);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ash);
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer components {
+  .section-label {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-slate);
+  }
+
+  .hairline {
+    border-color: var(--color-cloud);
+  }
+}
