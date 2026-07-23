@@ -43,6 +43,11 @@ export const education = [
     period: 'Mar 2020 – Feb 2026',
   },
   {
+    org: 'UCSD Qualcomm Institute — AI Entrepreneurship Program',
+    detail: 'Research: a YOLOv11-based detection and blurring system for faces, plates, QR codes, and sensitive text',
+    period: '2025',
+  },
+  {
     org: 'KG KAIROS Robotics Bootcamp',
     detail: 'Industrial robot control and simulation with ROS2 / MoveIt2, plus PLC-based automation',
     period: 'Dec 2025 – Jun 2026',
