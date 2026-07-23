@@ -132,7 +132,7 @@ export function FrankaRig({ reduced, pointerActive }: RigProps) {
     _ray.set(camera.position, _rayDir)
     if (!_ray.intersectPlane(_plane, _targetWorld)) return
 
-    const MAX_STEP = 0.02
+    const MAX_STEP = 0.0275
     const ccdStep = (joint: THREE.Group | null, limit?: readonly [number, number]) => {
       if (!joint) return
       joint.getWorldPosition(_jointPos)
