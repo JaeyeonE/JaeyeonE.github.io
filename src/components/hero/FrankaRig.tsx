@@ -3,6 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { ContactShadows } from '@react-three/drei'
 import * as THREE from 'three'
 import { useFrankaModel } from './useFrankaModel'
+import { ScanBoxes } from './ScanBoxes'
 
 const RAD90 = Math.PI / 2
 
@@ -30,6 +31,11 @@ const LIMITS = {
 
 // Approximate finger mount (not read from the URDF — see note in JSX below).
 const FINGER_OFFSET = 0.04
+
+// Field-of-view cone (see ScanBoxes.tsx, which shares this same shape to
+// scatter its boxes inside it).
+const CONE_LENGTH = 0.5
+const CONE_RADIUS = 0.21
 
 const { damp, clamp } = THREE.MathUtils
 
@@ -84,13 +90,17 @@ export function FrankaRig({ reduced, pointerActive }: RigProps) {
   useFrame((_, rawDelta) => {
     const delta = Math.min(rawDelta, 0.05)
     clock.current += delta
-    const idle = reduced ? 0 : Math.sin(clock.current * 0.6) * 0.04
 
     if (!pointerActive.current) {
-      if (joint1.current) joint1.current.rotation.z = damp(joint1.current.rotation.z, HOME.j1 + idle, 4, delta)
+      // No cursor yet (or it left the canvas): rather than freezing in the
+      // home pose, slowly sweep the base and wrist as if searching the
+      // room — "active vision" idling, not a dead robot.
+      const sweepJ1 = reduced ? 0 : Math.sin(clock.current * 0.35) * 0.55
+      const sweepJ6 = reduced ? 0 : Math.sin(clock.current * 0.27 + 1.4) * 0.35
+      if (joint1.current) joint1.current.rotation.z = damp(joint1.current.rotation.z, HOME.j1 + sweepJ1, 3, delta)
       if (joint2.current) joint2.current.rotation.z = damp(joint2.current.rotation.z, HOME.j2, 4, delta)
       if (joint4.current) joint4.current.rotation.z = damp(joint4.current.rotation.z, HOME.j4, 4, delta)
-      if (joint6.current) joint6.current.rotation.z = damp(joint6.current.rotation.z, HOME.j6, 4, delta)
+      if (joint6.current) joint6.current.rotation.z = damp(joint6.current.rotation.z, HOME.j6 + sweepJ6, 3, delta)
       if (joint7.current) joint7.current.rotation.z = damp(joint7.current.rotation.z, HOME.j7, 4, delta)
       return
     }
@@ -98,7 +108,7 @@ export function FrankaRig({ reduced, pointerActive }: RigProps) {
     // Cosmetic wrist roll, independent of the IK solve.
     if (joint7.current) {
       const target = HOME.j7 + clamp(pointer.x, -1, 1) * 0.3
-      joint7.current.rotation.z = damp(joint7.current.rotation.z, target, 4, delta)
+      joint7.current.rotation.z = damp(joint7.current.rotation.z, target, 3, delta)
     }
 
     if (!endEffector.current) return
@@ -121,7 +131,7 @@ export function FrankaRig({ reduced, pointerActive }: RigProps) {
     _ray.set(camera.position, _rayDir)
     if (!_ray.intersectPlane(_plane, _targetWorld)) return
 
-    const MAX_STEP = 0.035
+    const MAX_STEP = 0.02
     const ccdStep = (joint: THREE.Group | null, limit?: readonly [number, number]) => {
       if (!joint) return
       joint.getWorldPosition(_jointPos)
@@ -217,6 +227,33 @@ export function FrankaRig({ reduced, pointerActive }: RigProps) {
                                       {/* End-effector marker (TCP offset per franka_hand's default
                                           tcp_xyz) — invisible, used only as an IK target reference. */}
                                       <group ref={endEffector} position={[0, 0, 0.1034]} />
+
+                                      {/* Field-of-view cone: a translucent "beam" standing in for an
+                                          eye-in-hand camera, without modeling an actual camera body.
+                                          Apex near the hand, opening forward along local +Z — see the
+                                          derivation note above for how the rotation gets it that way. */}
+                                      <mesh position={[0, 0, CONE_LENGTH / 2]} rotation={[-RAD90, 0, 0]}>
+                                        <cylinderGeometry args={[0, CONE_RADIUS, CONE_LENGTH, 28, 1, true]} />
+                                        <meshBasicMaterial
+                                          color="#8f8f96"
+                                          transparent
+                                          opacity={0.16}
+                                          side={THREE.DoubleSide}
+                                          depthWrite={false}
+                                        />
+                                      </mesh>
+                                      {/* Rim outline for definition against a light background. */}
+                                      <mesh position={[0, 0, CONE_LENGTH / 2]} rotation={[-RAD90, 0, 0]}>
+                                        <cylinderGeometry args={[0, CONE_RADIUS, CONE_LENGTH, 28, 1, true]} />
+                                        <meshBasicMaterial
+                                          color="#5c5c64"
+                                          transparent
+                                          opacity={0.2}
+                                          wireframe
+                                          depthWrite={false}
+                                        />
+                                      </mesh>
+                                      <ScanBoxes reduced={reduced} />
                                     </group>
                                   </group>
                                 </group>
