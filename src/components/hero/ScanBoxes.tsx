@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
+import { CONE_START_Z, CONE_LENGTH, CONE_SPREAD } from './visionCone'
 
-// Matches the field-of-view cone in FrankaRig: apex at local origin, opening
-// along local +Z (the hand's forward direction), ~24° half-angle.
-const CONE_NEAR = 0.14
-const CONE_FAR = 0.42
-const CONE_SPREAD = 0.42
+// Boxes spawn between these two fractions of the cone's depth (from apex to
+// base), so they never sit right on the apex point or right at the rim.
+const NEAR_FRAC = 0.3
+const FAR_FRAC = 0.9
 
 let nextId = 0
 
 function randomBoxPosition(): [number, number, number] {
-  const depth = CONE_NEAR + Math.random() * (CONE_FAR - CONE_NEAR)
-  const maxRadius = depth * CONE_SPREAD
+  const depthFromApex = CONE_LENGTH * (NEAR_FRAC + Math.random() * (FAR_FRAC - NEAR_FRAC))
+  const maxRadius = depthFromApex * CONE_SPREAD
   const radius = maxRadius * (0.2 + Math.random() * 0.65)
   const angle = Math.random() * Math.PI * 2
-  return [radius * Math.cos(angle), radius * Math.sin(angle), depth]
+  return [radius * Math.cos(angle), radius * Math.sin(angle), CONE_START_Z + depthFromApex]
 }
 
 type Box = { id: number; position: [number, number, number] }

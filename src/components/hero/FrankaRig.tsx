@@ -4,6 +4,7 @@ import { ContactShadows } from '@react-three/drei'
 import * as THREE from 'three'
 import { useFrankaModel } from './useFrankaModel'
 import { ScanBoxes } from './ScanBoxes'
+import { CONE_START_Z, CONE_LENGTH, CONE_RADIUS } from './visionCone'
 
 const RAD90 = Math.PI / 2
 
@@ -32,10 +33,10 @@ const LIMITS = {
 // Approximate finger mount (not read from the URDF — see note in JSX below).
 const FINGER_OFFSET = 0.04
 
-// Field-of-view cone (see ScanBoxes.tsx, which shares this same shape to
-// scatter its boxes inside it).
-const CONE_LENGTH = 0.5
-const CONE_RADIUS = 0.21
+// How far below the actual cursor the tracked point sits (in NDC units,
+// screen-space "down"), so the gripper reaches toward a spot below the
+// pointer rather than landing exactly on it.
+const TARGET_Y_OFFSET = 0.45
 
 const { damp, clamp } = THREE.MathUtils
 
@@ -126,7 +127,7 @@ export function FrankaRig({ reduced, pointerActive }: RigProps) {
     // of the frame this used to send the shoulder past a natural limit and
     // fold the arm backward.
     const ndcX = clamp(pointer.x, -1, 1)
-    const ndcY = clamp(pointer.y, -0.6, 0.6)
+    const ndcY = clamp(pointer.y, -0.6, 0.6) + TARGET_Y_OFFSET
     _rayDir.set(ndcX, ndcY, 0.5).unproject(camera).sub(camera.position).normalize()
     _ray.set(camera.position, _rayDir)
     if (!_ray.intersectPlane(_plane, _targetWorld)) return
@@ -232,7 +233,7 @@ export function FrankaRig({ reduced, pointerActive }: RigProps) {
                                           eye-in-hand camera, without modeling an actual camera body.
                                           Apex near the hand, opening forward along local +Z — see the
                                           derivation note above for how the rotation gets it that way. */}
-                                      <mesh position={[0, 0, CONE_LENGTH / 2]} rotation={[-RAD90, 0, 0]}>
+                                      <mesh position={[0, 0, CONE_START_Z + CONE_LENGTH / 2]} rotation={[-RAD90, 0, 0]}>
                                         <cylinderGeometry args={[0, CONE_RADIUS, CONE_LENGTH, 28, 1, true]} />
                                         <meshBasicMaterial
                                           color="#8f8f96"
@@ -243,7 +244,7 @@ export function FrankaRig({ reduced, pointerActive }: RigProps) {
                                         />
                                       </mesh>
                                       {/* Rim outline for definition against a light background. */}
-                                      <mesh position={[0, 0, CONE_LENGTH / 2]} rotation={[-RAD90, 0, 0]}>
+                                      <mesh position={[0, 0, CONE_START_Z + CONE_LENGTH / 2]} rotation={[-RAD90, 0, 0]}>
                                         <cylinderGeometry args={[0, CONE_RADIUS, CONE_LENGTH, 28, 1, true]} />
                                         <meshBasicMaterial
                                           color="#5c5c64"
