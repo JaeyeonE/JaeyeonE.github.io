@@ -21,7 +21,7 @@ export function Awards() {
                   .map((a) => (
                     <div key={a.title} className="border-t border-cloud pt-6">
                       <p className="font-medium leading-snug text-ink">
-                        {a.title} <span className="font-light text-slate">— {a.rank}</span>
+                        {a.title} <span className="font-light text-slate">| {a.rank}</span>
                       </p>
                       {a.desc && <p className="mt-1.5 text-sm font-light leading-relaxed text-graphite">{a.desc}</p>}
                     </div>

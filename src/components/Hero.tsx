@@ -44,7 +44,7 @@ export function Hero() {
             <span className="font-thin">.</span>
           </h1>
           <p className="mt-8 max-w-md font-light leading-relaxed text-graphite">
-            {profile.name} — building robot manipulation systems that see with purpose.
+            {profile.name} | building robot manipulation systems that see with purpose.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2">

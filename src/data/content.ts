@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Jaeyeon Heo',
-  title: 'AI/ML Engineer — Computer Vision × Robot Control',
+  title: 'AI/ML Engineer | Computer Vision × Robot Control',
   tagline: "I build on what I've learned and create what is needed.",
   email: 'jaeyeon.e.hoe@gmail.com',
   github: 'https://github.com/JaeyeonE',
@@ -43,7 +43,7 @@ export const education = [
     period: 'Mar 2020 – Feb 2026',
   },
   {
-    org: 'UCSD Qualcomm Institute — AI Entrepreneurship Program',
+    org: 'UCSD Qualcomm Institute | AI Entrepreneurship Program',
     detail: 'Research: a YOLOv11-based detection and blurring system for faces, plates, QR codes, and sensitive text',
     period: '2025',
   },
@@ -80,7 +80,7 @@ export const experience = [
 
 export const certifications = [
   { name: 'Professional Machine Learning Engineer', org: 'Google Cloud', date: 'Nov 2025' },
-  { name: 'OPIc — IH (Intermediate High)', org: 'ACTFL', date: '' },
+  { name: 'OPIc | IH (Intermediate High)', org: 'ACTFL', date: '' },
 ]
 
 export type Project = {
@@ -110,21 +110,21 @@ export const projects: Project[] = [
     problem:
       'How well can a robot understand a relational instruction like "place {object} onto {target}" using zero-shot, CLIP-based grounding with no additional training?',
     approach: [
-      'Identified an early performance imbalance: Object Selection reached 46.7% while Target Grounding stalled at 20.0% (Exp #6–#8) — the model could find the object but not the placement location.',
-      'Traced the bottleneck to a missing spatial-reasoning signal, and injected an Affordance Prior — prior knowledge of placeable regions — into the pipeline.',
+      'Identified an early performance imbalance: Object Selection reached 46.7% while Target Grounding stalled at 20.0% (Exp #6–#8) | the model could find the object but not the placement location.',
+      'Traced the bottleneck to a missing spatial-reasoning signal, and injected an Affordance Prior | prior knowledge of placeable regions | into the pipeline.',
       'Extended the pipeline to combine region information with the Affordance signal rather than relying on a single cue.',
       'Once Target Grounding gains plateaued, shifted the focus to overcoming the Object Selection accuracy ceiling rather than over-optimizing an already-saturated signal.',
     ],
     results: [
       'Target Grounding jumped 3.3× and Success Rate improved roughly 3× after adding the Affordance Prior.',
       'Quantified the zero-shot grounding ceiling under this setup.',
-      'Success Rate plateaus at the Object Selection accuracy ceiling (46.7%) — the next real bottleneck.',
+      'Success Rate plateaus at the Object Selection accuracy ceiling (46.7%) | the next real bottleneck.',
     ],
     links: [{ label: 'GitHub', href: 'https://github.com/JaeyeonE/VLA-Grounding-MVP' }],
     stats: [
       { value: '×3.3', label: 'Target Grounding gain after adding the Affordance Prior' },
       { value: '~×3', label: 'Success Rate improvement over the same step' },
-      { value: '46.7%', label: 'Object Selection accuracy — the current ceiling on Success Rate' },
+      { value: '46.7%', label: 'Object Selection accuracy | the current ceiling on Success Rate' },
     ],
   },
   {
@@ -136,7 +136,7 @@ export const projects: Project[] = [
     problem:
       'Fuel-port, cap, and nozzle geometry varies by vehicle; lighting and reflections make detection unstable; camera-to-robot-base coordinate transforms are error-prone; and the system provided no visibility into task status or failures.',
     approach: [
-      'Designed a 4-layer system architecture — Perception → Control → Data → Service — built end-to-end on a Doosan E0509 arm with an Intel RealSense D455, YOLOv12, ROS2, SQLite, and Streamlit.',
+      'Designed a 4-layer system architecture | Perception → Control → Data → Service | built end-to-end on a Doosan E0509 arm with an Intel RealSense D455, YOLOv12, ROS2, SQLite, and Streamlit.',
       'Built an RGB-D perception pipeline for 3-class detection (fuel port / cap / nozzle), with a camera-to-robot-base coordinate transform feeding the grasp controller.',
       'Collected and annotated a refueling-specific dataset, used augmentation to mitigate limited data, and tuned hyperparameters for detection accuracy and inference speed.',
       'Applied OpenCV-based center correction to the model output to improve grasp precision.',
@@ -144,7 +144,7 @@ export const projects: Project[] = [
       'Led scheduling, task allocation, and interface coordination across the vision, control, and data modules.',
     ],
     results: [
-      'Completed the full loop — detection → coordinate transform → grasp — in a mock environment.',
+      'Completed the full loop | detection → coordinate transform → grasp | in a mock environment.',
       'Next: deployment in a real-world environment, a VLA-based natural-language interface, and closed-loop calibration to reduce coordinate-transform error.',
     ],
     links: [{ label: 'GitHub', href: 'https://github.com/JaeyeonE/robotic-arm-refueler' }],
@@ -174,7 +174,7 @@ export const projects: Project[] = [
       'Built a web interface and a mobile simulation environment to test delivery / service scenarios ahead of physical deployment.',
     ],
     results: [
-      'This latest project is still in active development — this card will be updated as results come in.',
+      'This latest project is still in active development | this card will be updated as results come in.',
     ],
     links: [{ label: 'GitHub', href: 'https://github.com/Filaner/RoToSY' }],
     video: {
@@ -229,10 +229,10 @@ export const awards = [
     title: 'Bellevue College NextGen Startup Challenge (Hackathon)',
     rank: '2nd place',
     year: '2025',
-    desc: 'Team Clover — VR escape room, "Space Needle" edition. Project planning and TPM role (React, Git, Unity, Firebase).',
+    desc: 'Team Clover | VR escape room, "Space Needle" edition. Project planning and TPM role (React, Git, Unity, Firebase).',
   },
   {
-    title: 'Daegu Digital Innovation Promotion Agency — Regional SW Talent Program',
+    title: 'Daegu Digital Innovation Promotion Agency | Regional SW Talent Program',
     rank: '2nd place',
     year: '2024',
   },
@@ -249,10 +249,10 @@ export const awards = [
     desc: 'Proposed a regional industry-cluster analysis program using local industry data.',
   },
   {
-    title: 'Korea Information Technology Society — Undergraduate Paper Competition',
+    title: 'Korea Information Technology Society | Undergraduate Paper Competition',
     rank: '3rd place',
     year: '2024',
-    desc: 'Location-based social app with AI character filtering — frontend development (Flutter, Jupyter Notebook).',
+    desc: 'Location-based social app with AI character filtering | frontend development (Flutter, Jupyter Notebook).',
   },
 ]
 

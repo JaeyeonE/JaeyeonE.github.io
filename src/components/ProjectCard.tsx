@@ -57,7 +57,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             <ul className="mt-3 space-y-2.5">
               {project.approach.map((a) => (
                 <li key={a} className="text-sm font-light leading-relaxed text-graphite">
-                  — {a}
+                  | {a}
                 </li>
               ))}
             </ul>
@@ -80,7 +80,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               <ul className="mt-3 space-y-2.5">
                 {project.results.map((r) => (
                   <li key={r} className="text-sm font-light leading-relaxed text-graphite">
-                    — {r}
+                    | {r}
                   </li>
                 ))}
               </ul>

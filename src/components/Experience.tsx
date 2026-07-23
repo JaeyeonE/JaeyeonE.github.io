@@ -32,7 +32,7 @@ export function Experience() {
                 <ul className="mt-3 space-y-2">
                   {e.points.map((p) => (
                     <li key={p} className="text-sm font-light leading-relaxed text-graphite">
-                      — {p}
+                      | {p}
                     </li>
                   ))}
                 </ul>
